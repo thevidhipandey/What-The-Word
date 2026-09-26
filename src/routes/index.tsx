@@ -78,7 +78,10 @@ function getWordList(length: WordLength, difficulty: Difficulty) {
 function WhatTheWord() {
   const [length, setLength] = useState<WordLength>(5);
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
-  const [answer, setAnswer] = useState(() => getWordList(5, "medium")[Math.floor(Math.random() * WORDLISTS[5].medium.length)]);
+  const [answer, setAnswer] = useState<string>(() => {
+    const list = getWordList(5, "medium");
+    return list[Math.floor(Math.random() * list.length)] ?? "masti";
+  });
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState("");
   const [message, setMessage] = useState("");
@@ -91,8 +94,9 @@ function WhatTheWord() {
     const rank: Record<TileState, number> = { absent: 0, present: 1, correct: 2 };
     guesses.forEach(({ word, result }) => {
       [...word].forEach((letter, index) => {
+        const letter = word[index];
         const next = result[index];
-        if (!states[letter] || rank[next] > rank[states[letter]]) states[letter] = next;
+        if (letter && next && (!states[letter] || rank[next] > rank[states[letter]])) states[letter] = next;
       });
     });
     return states;
@@ -102,7 +106,7 @@ function WhatTheWord() {
     const wordList = getWordList(nextLength, nextDifficulty);
     setLength(nextLength);
     setDifficulty(nextDifficulty);
-    setAnswer(wordList[Math.floor(Math.random() * wordList.length)]);
+    setAnswer(wordList[Math.floor(Math.random() * wordList.length)] ?? (nextLength === 4 ? "chai" : nextLength === 6 ? "mandir" : "masti"));
     setGuesses([]);
     setCurrentGuess("");
     setMessage("");
