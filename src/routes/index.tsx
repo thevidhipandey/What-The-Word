@@ -94,7 +94,6 @@ function WhatTheWord() {
     const rank: Record<TileState, number> = { absent: 0, present: 1, correct: 2 };
     guesses.forEach(({ word, result }) => {
       [...word].forEach((letter, index) => {
-        const letter = word[index];
         const next = result[index];
         if (letter && next && (!states[letter] || rank[next] > rank[states[letter]])) states[letter] = next;
       });
