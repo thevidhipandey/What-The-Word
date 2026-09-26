@@ -427,10 +427,14 @@
   .owl-caption { display: none; }
   .game-controls { margin-top: 10px; }
   .play-area { width: min(100%, 340px); }
+  .play-area.length-6 { width: min(100%, 310px); }
+  .keyboard { gap: 5px; }
+  .keyboard-row { gap: 4px; }
   .tile { font-size: 1.45rem; }
   .length-4 .tile { font-size: 1.65rem; }
   .length-6 .tile { font-size: 1.25rem; }
-  .key { height: 44px; }
+  .key { height: 40px; }
+  .new-game { margin-top: 13px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
