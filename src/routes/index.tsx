@@ -126,7 +126,7 @@ function WhatTheWord() {
         setOwlMood("watching");
         const closeLetters = result.filter((tile) => tile !== "absent").length;
         const farOffComments = ["Not even close!", "The word is hiding from you.", "A bold detour!", "Did you ask a pigeon?"];
-        setOwlComment(closeLetters <= 1 ? farOffComments[(nextGuesses.length - 1) % farOffComments.length] : "Ooh, getting warmer...");
+        setOwlComment(closeLetters <= 1 ? (farOffComments[(nextGuesses.length - 1) % farOffComments.length] ?? "Not even close!") : "Ooh, getting warmer...");
       }
       return;
     }
