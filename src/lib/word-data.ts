@@ -7,7 +7,7 @@ export const WORDLISTS = {
   },
   5: {
     easy: ["mango", "lemon", "chair", "table", "water", "plant", "music", "smile"],
-    medium: ["bloom", "crisp", "fable", "grace", "whirl", "ember", "petal", "ripple"],
+    medium: ["bloom", "crisp", "fable", "grace", "whirl", "ember", "petal", "shore"],
     tough: ["wryly", "quill", "gloam", "sleet", "brisk", "mirth", "knoll", "droll"],
   },
   6: {
@@ -27,7 +27,7 @@ export const WORD_MEANINGS: Record<string, string> = {
   mango: "A sweet, juicy tropical fruit.", lemon: "A sour yellow citrus fruit.", chair: "A seat for one person, usually with a back.", table: "Furniture with a flat top supported by legs.",
   water: "The clear liquid essential to life.", plant: "A living thing that usually grows in soil.", music: "Sounds arranged in rhythm and melody.", smile: "A happy expression made with your mouth.",
   bloom: "A flower, or the act of flowering.", crisp: "Firm and pleasantly crunchy.", fable: "A short story that teaches a lesson.", grace: "Elegance and ease of movement.",
-  whirl: "To spin around quickly.", ember: "A small, glowing piece of coal or wood.", petal: "One of the soft, colored parts of a flower.", ripple: "A small wave on the surface of water.",
+  whirl: "To spin around quickly.", ember: "A small, glowing piece of coal or wood.", petal: "One of the soft, colored parts of a flower.", shore: "The land along the edge of a body of water.",
   wryly: "In a dry, amused, or slightly ironic way.", quill: "A large feather once used as a pen.", gloam: "Twilight; the dim light of evening.", sleet: "Rain mixed with snow or ice.",
   brisk: "Quick, energetic, and lively.", mirth: "Laughter and cheerful amusement.", knoll: "A small, rounded hill.", droll: "Oddly amusing in a dry way.",
   garden: "A place where flowers, vegetables, or other plants grow.", cotton: "A soft plant fiber used to make cloth.", sunset: "The time when the sun disappears below the horizon.", family: "People related to one another, or living as a close group.",

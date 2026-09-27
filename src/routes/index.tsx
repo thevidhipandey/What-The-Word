@@ -63,7 +63,7 @@ function WhatTheWord() {
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
   const [answer, setAnswer] = useState<string>(() => {
     const list = getWordList(5, "medium");
-    return list[Math.floor(Math.random() * list.length)] ?? "masti";
+    return list[Math.floor(Math.random() * list.length)] ?? "bloom";
   });
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState("");
@@ -89,7 +89,7 @@ function WhatTheWord() {
     const wordList = getWordList(nextLength, nextDifficulty);
     setLength(nextLength);
     setDifficulty(nextDifficulty);
-    setAnswer(wordList[Math.floor(Math.random() * wordList.length)] ?? (nextLength === 4 ? "chai" : nextLength === 6 ? "mandir" : "masti"));
+    setAnswer(wordList[Math.floor(Math.random() * wordList.length)] ?? (nextLength === 4 ? "love" : nextLength === 6 ? "garden" : "bloom"));
     setGuesses([]);
     setCurrentGuess("");
     setMessage("");
@@ -116,12 +116,12 @@ function WhatTheWord() {
         setOwlMood("smug");
         setCelebrate(true);
         setOwlComment("Obviously.");
-        setMessage(`Shabaash! Solved in ${nextGuesses.length}/6`);
+        setMessage(`Nicely done! Solved in ${nextGuesses.length}/6`);
       } else if (nextGuesses.length === 6) {
         setGameOver(true);
         setOwlMood("offended");
         setOwlComment("Unbelievable!");
-        setMessage(`Word was: ${answer.toUpperCase()}`);
+        setMessage("The owl had this one.");
       } else {
         setOwlMood("watching");
         const closeLetters = result.filter((tile) => tile !== "absent").length;
@@ -202,7 +202,7 @@ function WhatTheWord() {
         </div>
       </section>
 
-      <p className={`game-message ${message.includes("Shabaash") ? "game-message--win" : ""}`} aria-live="polite">{message || " "}</p>
+      <p className={`game-message ${message.includes("Nicely done") ? "game-message--win" : ""}`} aria-live="polite">{message || " "}</p>
       {gameOver && <div className="word-reveal" aria-live="polite"><span className="word-reveal-label">THE WORD WAS</span><strong>{answer.toUpperCase()}</strong><span className="word-reveal-meaning">{WORD_MEANINGS[answer]}</span></div>}
 
       <section id="keyboard" className="keyboard" aria-label="On-screen keyboard">
