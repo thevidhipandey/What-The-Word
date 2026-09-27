@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the English answer bank and its end-of-round definitions together in `src/lib/word-data.ts` so every playable answer has an offline meaning.

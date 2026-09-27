@@ -1,23 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-
-const WORDLISTS = {
-  4: {
-    easy: ["love", "blue", "pink", "gold", "moon", "star", "tree", "book", "fish", "bird", "rain", "snow", "wind", "leaf", "rose", "cake", "gate", "door", "hand", "ball"],
-    medium: ["chai", "roti", "dahi", "aloo", "desi", "holi", "diya", "puja", "ghee", "dost", "bhai", "didi", "rani", "raja", "yoga", "neem", "zari", "sari", "mela", "naan"],
-    tough: ["dhol", "thal", "puri", "kaju", "besan", "urad", "ragi", "jowa", "toor", "atta", "ubtn", "ojha", "juta", "paan", "jugal", "kada", "mudi", "suti", "teli", "mool"].filter((word) => word.length === 4),
-  },
-  5: {
-    easy: ["mango", "lemon", "onion", "curry", "spice", "chair", "table", "water", "light", "plant", "phone", "music", "dance", "smile", "happy", "dream", "cloud", "beach", "ocean", "river"],
-    medium: ["masti", "kurta", "achar", "bhaji", "pulao", "kheer", "halwa", "barfi", "laddu", "garam", "tulsi", "karam", "begum", "nawab", "rajah", "mahal", "hakim", "vakil", "sadhu", "yogic"],
-    tough: ["vedic", "mudra", "tikka", "seekh", "kabab", "raita", "papad", "puran", "katha", "vrata", "aarti", "bindi", "gulal", "sitar", "tabla", "natak", "kavya", "shair", "lehar", "dhaba"],
-  },
-  6: {
-    easy: ["garden", "cotton", "sunset", "cousin", "family", "mother", "father", "sister", "spices", "pickle", "temple", "prayer", "wisdom", "summer", "winter", "yellow", "orange", "purple", "silver", "bridge"],
-    medium: ["mandir", "bazaar", "kismet", "gulaab", "shaadi", "mehndi", "namkin", "masala", "chutni", "dahiwa", "suraya", "pardah", "sarson", "jaggri", "haldii", "rangol", "nagara", "dholak", "chikan", "zardoz"].filter((word) => word.length === 6),
-    tough: ["prasad", "kirtan", "sanyas", "mantra", "dharma", "moksha", "chakra", "guruji", "bhojan", "swaraj", "raagam", "santur", "nautch", "zenana", "purdah", "diwali", "kathak", "odissi", "ashram", "vedant"],
-  },
-} as const;
+import { WORDLISTS, WORD_MEANINGS } from "@/lib/word-data";
 
 type WordLength = keyof typeof WORDLISTS;
 type Difficulty = "easy" | "medium" | "tough";
@@ -80,7 +63,7 @@ function WhatTheWord() {
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
   const [answer, setAnswer] = useState<string>(() => {
     const list = getWordList(5, "medium");
-    return list[Math.floor(Math.random() * list.length)] ?? "masti";
+    return list[Math.floor(Math.random() * list.length)] ?? "bloom";
   });
   const [guesses, setGuesses] = useState<Guess[]>([]);
   const [currentGuess, setCurrentGuess] = useState("");
@@ -88,6 +71,7 @@ function WhatTheWord() {
   const [gameOver, setGameOver] = useState(false);
   const [owlMood, setOwlMood] = useState<OwlMood>("watching");
   const [celebrate, setCelebrate] = useState(false);
+  const [owlComment, setOwlComment] = useState("Go on, then.");
 
   const keyboardStates = useMemo(() => {
     const states: Record<string, TileState> = {};
@@ -105,13 +89,14 @@ function WhatTheWord() {
     const wordList = getWordList(nextLength, nextDifficulty);
     setLength(nextLength);
     setDifficulty(nextDifficulty);
-    setAnswer(wordList[Math.floor(Math.random() * wordList.length)] ?? (nextLength === 4 ? "chai" : nextLength === 6 ? "mandir" : "masti"));
+    setAnswer(wordList[Math.floor(Math.random() * wordList.length)] ?? (nextLength === 4 ? "love" : nextLength === 6 ? "garden" : "bloom"));
     setGuesses([]);
     setCurrentGuess("");
     setMessage("");
     setGameOver(false);
     setOwlMood("watching");
     setCelebrate(false);
+    setOwlComment("Go on, then.");
   }, [difficulty, length]);
 
   const handleKey = useCallback((key: string) => {
@@ -130,13 +115,18 @@ function WhatTheWord() {
         setGameOver(true);
         setOwlMood("smug");
         setCelebrate(true);
-        setMessage(`Shabaash! Solved in ${nextGuesses.length}/6`);
+        setOwlComment("Obviously.");
+        setMessage(`Nicely done! Solved in ${nextGuesses.length}/6`);
       } else if (nextGuesses.length === 6) {
         setGameOver(true);
         setOwlMood("offended");
-        setMessage(`Word was: ${answer.toUpperCase()}`);
+        setOwlComment("Unbelievable!");
+        setMessage("The owl had this one.");
       } else {
         setOwlMood("watching");
+        const closeLetters = result.filter((tile) => tile !== "absent").length;
+        const farOffComments = ["Not even close!", "The word is hiding from you.", "A bold detour!", "Did you ask a pigeon?"];
+        setOwlComment(closeLetters <= 1 ? (farOffComments[(nextGuesses.length - 1) % farOffComments.length] ?? "Not even close!") : "Ooh, getting warmer...");
       }
       return;
     }
@@ -173,7 +163,7 @@ function WhatTheWord() {
           <p className="tagline">Words you know. An owl who knows better.</p>
         </div>
         <div className={`owl-sticker owl-sticker--${owlMood}`} aria-live="polite" aria-label={owlMood === "smug" ? "Owl looks smug: you won" : owlMood === "offended" ? "Owl looks dramatically offended: game over" : "Owl is watching your guesses"}>
-          <div className="owl-speech">{owlMood === "smug" ? "Obviously." : owlMood === "offended" ? "Unbelievable!" : "Go on, then."}</div>
+          <div className="owl-speech">{owlComment}</div>
           <svg className="owl-art" viewBox="0 0 140 154" role="img" aria-label="A judgmental little owl">
             <path className="owl-ear" d="M30 48 20 12l34 21M110 48l10-36-34 21" />
             <path className="owl-body" d="M23 54Q18 30 50 39Q70 23 90 39Q122 30 117 59L119 105Q112 137 70 139Q28 137 21 105Z" />
@@ -212,7 +202,8 @@ function WhatTheWord() {
         </div>
       </section>
 
-      <p className={`game-message ${message.includes("Shabaash") ? "game-message--win" : ""}`} aria-live="polite">{message || " "}</p>
+      <p className={`game-message ${message.includes("Nicely done") ? "game-message--win" : ""}`} aria-live="polite">{message || " "}</p>
+      {gameOver && <div className="word-reveal" aria-live="polite"><span className="word-reveal-label">THE WORD WAS</span><strong>{answer.toUpperCase()}</strong><span className="word-reveal-meaning">{WORD_MEANINGS[answer]}</span></div>}
 
       <section id="keyboard" className="keyboard" aria-label="On-screen keyboard">
         {KEY_ROWS.map((keys, rowIndex) => <div className="keyboard-row" key={rowIndex}>{keys.map((key) => {
