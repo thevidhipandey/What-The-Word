@@ -149,8 +149,8 @@
   overflow: hidden;
   padding: 30px 18px 28px;
   background-color: var(--background);
-  background-image: radial-gradient(var(--game-shadow) 0.9px, transparent 0.9px), linear-gradient(145deg, var(--background) 0 65%, var(--secondary) 65% 68%, var(--background) 68% 100%);
-  background-size: 20px 20px, 100% 100%;
+  background-image: radial-gradient(var(--game-shadow) 0.9px, transparent 0.9px), radial-gradient(var(--accent) 2px, transparent 2px);
+  background-size: 20px 20px, 92px 92px;
   color: var(--foreground);
   font-family: "Nunito", sans-serif;
 }
@@ -424,11 +424,11 @@
 
 @media (max-width: 540px) {
   .game-shell { min-height: 100svh; padding: 19px 14px 24px; }
-  .masthead { min-height: 198px; padding-right: 0; }
+  .masthead { min-height: 208px; padding-right: 0; }
   .title-lockup { padding-top: 1px; }
   .title-lockup h1 { font-size: 2.65rem; }
   .tagline { max-width: 225px; margin: 1px auto 0; font-size: 0.76rem; }
-  .owl-sticker { top: 93px; right: calc(50% - 48px); width: 96px; transform: rotate(4deg) scale(0.81); transform-origin: top center; }
+  .owl-sticker { top: 111px; right: calc(50% - 48px); width: 96px; transform: rotate(4deg) scale(0.81); transform-origin: top center; }
   .owl-sticker--smug { transform: rotate(-6deg) translateY(-4px) scale(0.81); }
   .owl-sticker--offended { transform: rotate(8deg) translateY(3px) scale(0.81); }
   .owl-speech { right: -48px; max-width: 172px; }
