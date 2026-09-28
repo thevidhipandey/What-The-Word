@@ -58,6 +58,27 @@ function getWordList(length: WordLength, difficulty: Difficulty) {
   return list.length ? list : WORDLISTS[5].medium;
 }
 
+function pickComment(list: string[], avoid?: string): string {
+  if (!list.length) return "Interesting choice...";
+  if (list.length === 1) return list[0];
+  let next = list[Math.floor(Math.random() * list.length)];
+  let guard = 0;
+  while (next === avoid && guard < 10) {
+    next = list[Math.floor(Math.random() * list.length)];
+    guard += 1;
+  }
+  return next;
+}
+
+const ALL_WRONG_COMMENTS = ["Did you close your eyes?", "Not even close!", "A bold detour!", "Did a pigeon help?", "The alphabet objects!", "Wild. Truly wild."];
+const WRONG_SEATS_COMMENTS = ["Right letters, wrong seats.", "The letters showed up. The seats didn't.", "Right cast, wrong roles.", "Ooh, they exist! Just... elsewhere."];
+const COOKING_COMMENTS = ["Now we're cooking.", "Ooh, getting warmer!", "I see a clue brewing.", "Now we're getting somewhere!", "My feathers are tingling.", "The word is nervous now."];
+const ONE_OFF_COMMENTS = ["One letter off. Don't choke.", "One away. Breathe.", "So close I can hoot it!", "Careful now. No choking."];
+const LAST_GUESS_COMMENTS = ["One left. Sweating yet?", "Last guess. No pressure. Okay, lots of pressure.", "This is it. I'm calm. Are you?", "Final shot. Make it count."];
+const SHORT_COMMENTS = ["Half a word? Bold strategy.", "That's not even a full word.", "Fill it up first, chief.", "Missing letters. Nice try though."];
+const WIN_COMMENTS = ["Obviously.", "Show-off.", "Fine. That was clean.", "Knew it. Maybe."];
+const LOSE_COMMENTS = ["Unbelievable!", "I'm not even surprised.", "The owl remains undefeated.", "Told you I knew better."];
+
 function WhatTheWord() {
   const [length, setLength] = useState<WordLength>(5);
   const [difficulty, setDifficulty] = useState<Difficulty>("medium");
@@ -104,6 +125,7 @@ function WhatTheWord() {
     if (key === "enter") {
       if (currentGuess.length !== length) {
         setMessage("Not enough letters");
+        setOwlComment((previous) => pickComment(SHORT_COMMENTS, previous));
         return;
       }
       const result = scoreGuess(currentGuess, answer, length);
@@ -115,20 +137,24 @@ function WhatTheWord() {
         setGameOver(true);
         setOwlMood("smug");
         setCelebrate(true);
-        setOwlComment("Obviously.");
+        setOwlComment((previous) => pickComment(WIN_COMMENTS, previous));
         setMessage(`Nicely done! Solved in ${nextGuesses.length}/6`);
       } else if (nextGuesses.length === 6) {
         setGameOver(true);
         setOwlMood("offended");
-        setOwlComment("Unbelievable!");
+        setOwlComment((previous) => pickComment(LOSE_COMMENTS, previous));
         setMessage("The owl had this one.");
       } else {
         setOwlMood("watching");
         const closeLetters = result.filter((tile) => tile !== "absent").length;
-        const farOffComments = ["Not even close!", "A bold detour!", "Did a pigeon help?", "The alphabet objects!", "Wild. Truly wild."];
-        const closeComments = ["Ooh, getting warmer!", "I see a clue brewing.", "Now we're getting somewhere!", "My feathers are tingling.", "So close I can hoot it!"];
-        const comments = closeLetters <= 1 ? farOffComments : closeComments;
-        setOwlComment(comments[(nextGuesses.length - 1) % comments.length] ?? "Interesting choice...");
+        const correctLetters = result.filter((tile) => tile === "correct").length;
+        let comments: string[];
+        if (nextGuesses.length === 5) comments = LAST_GUESS_COMMENTS;
+        else if (correctLetters === length - 1) comments = ONE_OFF_COMMENTS;
+        else if (closeLetters === 0) comments = ALL_WRONG_COMMENTS;
+        else if (correctLetters === 0 && closeLetters > 0) comments = WRONG_SEATS_COMMENTS;
+        else comments = COOKING_COMMENTS;
+        setOwlComment((previous) => pickComment(comments, previous));
       }
       return;
     }
