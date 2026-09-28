@@ -421,27 +421,27 @@
 @keyframes confetti-drop { to { transform: translateY(105svh) rotate(410deg); opacity: 0.15; } }
 
 @media (max-width: 540px) {
-  .game-shell { min-height: 100svh; padding: 19px 14px 24px; }
-  .masthead { min-height: 208px; padding-right: 0; }
-  .title-lockup { padding-top: 1px; }
-  .title-lockup h1 { font-size: 2.65rem; }
-  .tagline { max-width: 225px; margin: 1px auto 0; font-size: 0.76rem; }
-  .owl-sticker { top: 111px; right: calc(50% - 48px); width: 96px; transform: rotate(4deg) scale(0.81); transform-origin: top center; }
-  .owl-sticker--smug { transform: rotate(-6deg) translateY(-4px) scale(0.81); }
-  .owl-sticker--offended { transform: rotate(8deg) translateY(3px) scale(0.81); }
-  .owl-speech { right: -48px; max-width: 172px; }
-  .owl-art { width: 88px; height: 100px; margin-top: 14px; }
+  .game-shell { padding: 10px 10px 8px; }
+  .masthead { padding-right: 92px; }
+  .title-lockup h1 { font-size: 2.05rem; }
+  .tagline { max-width: 225px; margin: 1px auto 0; font-size: 0.74rem; }
+  .owl-sticker { top: -4px; right: 2px; width: 84px; }
+  .owl-speech { right: -14px; max-width: 150px; font-size: 0.7rem; }
+  .owl-art { width: 62px; height: 76px; margin-top: 12px; }
   .owl-caption { display: none; }
-  .game-controls { margin-top: 0; }
-  .play-area { width: min(100%, 340px); }
-  .play-area.length-6 { width: min(100%, 310px); }
-  .keyboard { gap: 5px; }
-  .keyboard-row { gap: 4px; }
-  .tile { font-size: 1.45rem; }
-  .length-4 .tile { font-size: 1.65rem; }
-  .length-6 .tile { font-size: 1.25rem; }
-  .key { height: 40px; }
-  .new-game { margin-top: 13px; }
+  .game-controls { gap: 12px; margin: 3px 0 6px; padding: 5px 10px; }
+  .setting select { min-width: 100px; font-size: 0.74rem; }
+  .word-reveal { gap: 6px; margin-bottom: 6px; }
+  .word-reveal strong { font-size: 1rem; }
+  .word-reveal-meaning { font-size: 0.72rem; }
+  .key { font-size: 0.78rem; }
+  .new-game { min-height: 34px; margin-top: 8px; }
+  .footnote { margin-top: 6px; }
+}
+
+@media (max-height: 560px) {
+  .tagline, .eyebrow { display: none; }
+  .title-lockup h1 { font-size: 1.9rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

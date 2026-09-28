@@ -214,7 +214,7 @@ function WhatTheWord() {
       </section>
 
       <button type="button" className="new-game" onClick={() => newGame()}><span aria-hidden="true">↻</span> New game</button>
-      <p className="footnote">A little word. A lot of nerve.</p>
+      <p className="footnote">A little word. A lot of nerve. · made by <b>Vidhi</b></p>
     </main>
   );
 }
