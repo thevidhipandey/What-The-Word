@@ -143,11 +143,11 @@
   position: relative;
   isolation: isolate;
   display: flex;
-  min-height: 100svh;
+  height: 100svh;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  padding: 30px 18px 28px;
+  padding: 14px 14px 10px;
   background-color: var(--background);
   background-image: radial-gradient(var(--game-shadow) 0.9px, transparent 0.9px), radial-gradient(var(--accent) 2px, transparent 2px);
   background-size: 20px 20px, 92px 92px;
@@ -158,11 +158,10 @@
 .masthead {
   position: relative;
   display: flex;
-  width: min(100%, 670px);
-  min-height: 171px;
+  width: min(100%, 560px);
   align-items: flex-start;
   justify-content: center;
-  padding-right: 143px;
+  padding-right: 138px;
 }
 
 .title-lockup { text-align: center; }
@@ -189,7 +188,7 @@
   margin: 0;
   color: var(--foreground);
   font-family: "Baloo 2", sans-serif;
-  font-size: 3.35rem;
+  font-size: 2.7rem;
   font-weight: 800;
   line-height: 1.12;
   transform: rotate(-1.7deg);
@@ -207,10 +206,10 @@
 
 .owl-sticker {
   position: absolute;
-  top: -2px;
-  right: 5px;
+  top: -6px;
+  right: 4px;
   display: flex;
-  width: 130px;
+  width: 112px;
   flex-direction: column;
   align-items: center;
   transform: rotate(5deg);
@@ -240,7 +239,7 @@
   line-height: 1.1;
 }
 
-.owl-art { width: 103px; height: 126px; margin-top: 16px; overflow: visible; }
+.owl-art { width: 84px; height: 103px; margin-top: 14px; overflow: visible; }
 .owl-body { fill: var(--game-owl); stroke: var(--foreground); stroke-width: 3.3px; stroke-linejoin: round; }
 .owl-ear { fill: var(--game-owl); stroke: var(--foreground); stroke-width: 3.3px; stroke-linejoin: round; }
 .owl-wing { fill: var(--game-owl-dark); stroke: var(--foreground); stroke-width: 3px; stroke-linecap: round; stroke-linejoin: round; }
@@ -255,12 +254,11 @@
 
 .game-controls {
   display: flex;
-  min-height: 63px;
   align-items: center;
   justify-content: center;
   gap: 18px;
-  margin: 1px 0 11px;
-  padding: 9px 16px;
+  margin: 4px 0 8px;
+  padding: 6px 16px;
   border-top: 1px dashed var(--border);
   border-bottom: 1px dashed var(--border);
 }
