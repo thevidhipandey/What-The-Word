@@ -60,11 +60,11 @@ function getWordList(length: WordLength, difficulty: Difficulty) {
 
 function pickComment(list: string[], avoid?: string): string {
   if (!list.length) return "Interesting choice...";
-  if (list.length === 1) return list[0];
-  let next = list[Math.floor(Math.random() * list.length)];
+  if (list.length === 1) return list[0] ?? "Interesting choice...";
+  let next: string = list[Math.floor(Math.random() * list.length)] ?? "Interesting choice...";
   let guard = 0;
   while (next === avoid && guard < 10) {
-    next = list[Math.floor(Math.random() * list.length)];
+    next = list[Math.floor(Math.random() * list.length)] ?? "Interesting choice...";
     guard += 1;
   }
   return next;
