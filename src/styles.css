@@ -207,7 +207,7 @@
 .owl-sticker {
   position: absolute;
   top: -6px;
-  right: 4px;
+  right: 10px;
   display: flex;
   width: 112px;
   flex-direction: column;
@@ -223,7 +223,7 @@
   position: absolute;
   z-index: 2;
   top: 0;
-  right: -12px;
+  right: 0;
   padding: 5px 10px 4px;
   border: 1px solid var(--foreground);
   border-radius: 5px 5px 5px 1px;
@@ -232,8 +232,8 @@
   font-family: "Baloo 2", sans-serif;
   font-size: 0.79rem;
   font-weight: 800;
-  white-space: nowrap;
-  max-width: 205px;
+  width: max-content;
+  max-width: min(205px, calc(100vw - 28px));
   white-space: normal;
   text-align: center;
   line-height: 1.1;
@@ -425,8 +425,8 @@
   .masthead { padding-right: 92px; }
   .title-lockup h1 { font-size: 2.05rem; }
   .tagline { max-width: 225px; margin: 1px auto 0; font-size: 0.74rem; }
-  .owl-sticker { top: -4px; right: 2px; width: 84px; }
-  .owl-speech { right: -14px; max-width: 150px; font-size: 0.7rem; }
+  .owl-sticker { top: -4px; right: 8px; width: 84px; }
+  .owl-speech { right: 0; max-width: min(148px, calc(100vw - 20px)); font-size: 0.7rem; }
   .owl-art { width: 62px; height: 76px; margin-top: 12px; }
   .owl-caption { display: none; }
   .game-controls { gap: 12px; margin: 3px 0 6px; padding: 5px 10px; }

@@ -125,8 +125,10 @@ function WhatTheWord() {
       } else {
         setOwlMood("watching");
         const closeLetters = result.filter((tile) => tile !== "absent").length;
-        const farOffComments = ["Not even close!", "The word is hiding from you.", "A bold detour!", "Did you ask a pigeon?"];
-        setOwlComment(closeLetters <= 1 ? (farOffComments[(nextGuesses.length - 1) % farOffComments.length] ?? "Not even close!") : "Ooh, getting warmer...");
+        const farOffComments = ["Not even close!", "A bold detour!", "Did a pigeon help?", "The alphabet objects!", "Wild. Truly wild."];
+        const closeComments = ["Ooh, getting warmer!", "I see a clue brewing.", "Now we're getting somewhere!", "My feathers are tingling.", "So close I can hoot it!"];
+        const comments = closeLetters <= 1 ? farOffComments : closeComments;
+        setOwlComment(comments[(nextGuesses.length - 1) % comments.length] ?? "Interesting choice...");
       }
       return;
     }
