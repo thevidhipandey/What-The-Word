@@ -1,24 +1,51 @@
-# Pixel Perfect Match
+# 🎯 WhatTheWord
 
-Implement exactly the screenshot and nothing else
+A simple, replayable word guessing game where you choose the challenge before you start.
 
-This project was built with [Lovable](https://lovable.dev).
+Pick how many letters you want to guess, choose your difficulty, and try to crack the hidden word before you run out of attempts.
 
-## Build with Lovable
+## 🎮 How to Play
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/85bfbffe-99f0-4753-8fb6-6dfb7895a5d9).
+1. Choose a word length:
+   - 4 letters
+   - 5 letters
+   - 6 letters
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+2. Choose your difficulty:
+   - Easy
+   - Medium
+   - Hard
 
-## Development
+3. Start guessing!
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Each guess gives you clues:
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+- 🟩 **Green** → correct letter in the correct position
+- 🟨 **Yellow** → correct letter, but in the wrong position
+- 🟥 **Red** → letter isn't in the word
+
+Keep guessing until you find the word or run out of attempts.
+
+If you don't get it, the hidden word is revealed.
+
+Finished? Start a **New Game** and go again.
+
+## ✨ Features
+
+- 🎯 4, 5, and 6-letter word modes
+- ⚡ Multiple difficulty levels
+- 🟩🟨🟥 Color-coded letter feedback
+- ⌨️ On-screen keyboard
+- 🔢 Multiple attempts per game
+- 🔄 Unlimited replays
+- 🎲 New random word for every game
+- 🏆 Win and loss states
+- 📱 Responsive design for desktop and mobile
+
+## 🛠️ Built With
+
+- React
+- TypeScript
+- Vite
+- CSS
+
