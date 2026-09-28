@@ -143,11 +143,11 @@
   position: relative;
   isolation: isolate;
   display: flex;
-  min-height: 100svh;
+  height: 100svh;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  padding: 30px 18px 28px;
+  padding: 14px 14px 10px;
   background-color: var(--background);
   background-image: radial-gradient(var(--game-shadow) 0.9px, transparent 0.9px), radial-gradient(var(--accent) 2px, transparent 2px);
   background-size: 20px 20px, 92px 92px;
@@ -158,11 +158,10 @@
 .masthead {
   position: relative;
   display: flex;
-  width: min(100%, 670px);
-  min-height: 171px;
+  width: min(100%, 560px);
   align-items: flex-start;
   justify-content: center;
-  padding-right: 143px;
+  padding-right: 138px;
 }
 
 .title-lockup { text-align: center; }
@@ -189,7 +188,7 @@
   margin: 0;
   color: var(--foreground);
   font-family: "Baloo 2", sans-serif;
-  font-size: 3.35rem;
+  font-size: 2.7rem;
   font-weight: 800;
   line-height: 1.12;
   transform: rotate(-1.7deg);
@@ -207,10 +206,10 @@
 
 .owl-sticker {
   position: absolute;
-  top: -2px;
-  right: 5px;
+  top: -6px;
+  right: 4px;
   display: flex;
-  width: 130px;
+  width: 112px;
   flex-direction: column;
   align-items: center;
   transform: rotate(5deg);
@@ -240,7 +239,7 @@
   line-height: 1.1;
 }
 
-.owl-art { width: 103px; height: 126px; margin-top: 16px; overflow: visible; }
+.owl-art { width: 84px; height: 103px; margin-top: 14px; overflow: visible; }
 .owl-body { fill: var(--game-owl); stroke: var(--foreground); stroke-width: 3.3px; stroke-linejoin: round; }
 .owl-ear { fill: var(--game-owl); stroke: var(--foreground); stroke-width: 3.3px; stroke-linejoin: round; }
 .owl-wing { fill: var(--game-owl-dark); stroke: var(--foreground); stroke-width: 3px; stroke-linecap: round; stroke-linejoin: round; }
@@ -255,12 +254,11 @@
 
 .game-controls {
   display: flex;
-  min-height: 63px;
   align-items: center;
   justify-content: center;
   gap: 18px;
-  margin: 1px 0 11px;
-  padding: 9px 16px;
+  margin: 4px 0 8px;
+  padding: 6px 16px;
   border-top: 1px dashed var(--border);
   border-bottom: 1px dashed var(--border);
 }
@@ -283,15 +281,16 @@
 }
 .setting-divider { color: var(--primary); font-size: 0.83rem; }
 
-.play-area { width: min(100%, 360px); }
-.board { display: grid; gap: 7px; }
-.guess-row { display: grid; grid-template-columns: repeat(var(--word-length, 5), minmax(0, 1fr)); gap: 7px; }
+.play-area { --tile: clamp(30px, calc((100svh - 430px) / 6), 58px); width: fit-content; max-width: 100%; }
+.board { display: grid; gap: 6px; }
+.guess-row { display: grid; grid-template-columns: repeat(var(--word-length, 5), var(--tile)); gap: 6px; }
 .length-4 .guess-row { --word-length: 4; }
 .length-5 .guess-row { --word-length: 5; }
 .length-6 .guess-row { --word-length: 6; }
 
 .tile {
   display: flex;
+  width: var(--tile);
   aspect-ratio: 1;
   align-items: center;
   justify-content: center;
@@ -303,14 +302,12 @@
   box-shadow: 0 3px 0 var(--game-shadow);
   color: var(--foreground);
   font-family: "Nunito", sans-serif;
-  font-size: 1.6rem;
+  font-size: calc(var(--tile) * 0.46);
   font-weight: 900;
   line-height: 1;
   text-transform: uppercase;
   transition: transform 110ms ease, border-color 110ms ease;
 }
-.length-4 .tile { font-size: 1.85rem; }
-.length-6 .tile { font-size: 1.42rem; }
 .tile--filled { border-color: var(--primary); transform: scale(1.035); }
 .tile--correct,.tile--present,.tile--absent {
   border-color: transparent;
@@ -330,10 +327,10 @@
 
 .game-message {
   display: flex;
-  min-height: 32px;
+  min-height: 26px;
   align-items: center;
   justify-content: center;
-  margin: 7px 0 5px;
+  margin: 6px 0 3px;
   color: var(--foreground);
   font-size: 0.88rem;
   font-weight: 900;
@@ -341,18 +338,18 @@
 .game-message--win { color: var(--primary); animation: cheer 420ms ease both; }
 @keyframes cheer { 50% { transform: translateY(-3px) rotate(-2deg) scale(1.08); } }
 
-.word-reveal { display: flex; width: min(100%, 360px); flex-direction: column; align-items: center; gap: 2px; margin: 0 0 15px; padding: 8px 14px 10px; border-top: 2px dashed var(--border); border-bottom: 2px dashed var(--border); text-align: center; }
-.word-reveal-label { color: var(--muted-foreground); font-size: 0.62rem; font-weight: 900; }
-.word-reveal strong { color: var(--primary); font-family: "Baloo 2", sans-serif; font-size: 1.5rem; line-height: 1.1; }
-.word-reveal-meaning { font-size: 0.83rem; font-weight: 800; line-height: 1.3; }
+.word-reveal { display: flex; width: min(100%, 420px); align-items: baseline; justify-content: center; gap: 8px; margin: 0 0 8px; padding: 5px 12px 6px; border-top: 2px dashed var(--border); border-bottom: 2px dashed var(--border); text-align: center; }
+.word-reveal-label { color: var(--muted-foreground); font-size: 0.6rem; font-weight: 900; }
+.word-reveal strong { color: var(--primary); font-family: "Baloo 2", sans-serif; font-size: 1.15rem; line-height: 1.1; }
+.word-reveal-meaning { font-size: 0.78rem; font-weight: 800; line-height: 1.25; }
 
-.keyboard { display: flex; width: min(100%, 405px); flex-direction: column; gap: 7px; }
-.keyboard-row { display: flex; justify-content: center; gap: 5px; }
+.keyboard { display: flex; width: min(100%, 405px); flex-direction: column; gap: 5px; }
+.keyboard-row { display: flex; justify-content: center; gap: 4px; }
 .key {
   display: flex;
   width: 36px;
   max-width: 9.4%;
-  height: 46px;
+  height: clamp(34px, calc((100svh - 430px) / 7), 46px);
   flex: 1 1 0;
   align-items: center;
   justify-content: center;
@@ -381,11 +378,11 @@
 
 .new-game {
   display: inline-flex;
-  min-height: 42px;
+  min-height: 38px;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  margin-top: 19px;
+  margin-top: 10px;
   padding: 7px 18px;
   border: 2px solid var(--primary);
   border-radius: 4px;
@@ -401,7 +398,8 @@
 .new-game:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 5px 0 var(--game-shadow); }
 .new-game:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--game-shadow); }
 .new-game span { font-size: 1.12rem; }
-.footnote { margin: 12px 0 0; color: var(--muted-foreground); font-size: 0.69rem; font-weight: 800; }
+.footnote { margin: 8px 0 0; color: var(--muted-foreground); font-size: 0.69rem; font-weight: 800; }
+.footnote b { color: var(--primary); }
 
 .confetti { position: absolute; inset: 0; z-index: 3; overflow: hidden; pointer-events: none; }
 .confetti i {
@@ -423,27 +421,27 @@
 @keyframes confetti-drop { to { transform: translateY(105svh) rotate(410deg); opacity: 0.15; } }
 
 @media (max-width: 540px) {
-  .game-shell { min-height: 100svh; padding: 19px 14px 24px; }
-  .masthead { min-height: 208px; padding-right: 0; }
-  .title-lockup { padding-top: 1px; }
-  .title-lockup h1 { font-size: 2.65rem; }
-  .tagline { max-width: 225px; margin: 1px auto 0; font-size: 0.76rem; }
-  .owl-sticker { top: 111px; right: calc(50% - 48px); width: 96px; transform: rotate(4deg) scale(0.81); transform-origin: top center; }
-  .owl-sticker--smug { transform: rotate(-6deg) translateY(-4px) scale(0.81); }
-  .owl-sticker--offended { transform: rotate(8deg) translateY(3px) scale(0.81); }
-  .owl-speech { right: -48px; max-width: 172px; }
-  .owl-art { width: 88px; height: 100px; margin-top: 14px; }
+  .game-shell { padding: 10px 10px 8px; }
+  .masthead { padding-right: 92px; }
+  .title-lockup h1 { font-size: 2.05rem; }
+  .tagline { max-width: 225px; margin: 1px auto 0; font-size: 0.74rem; }
+  .owl-sticker { top: -4px; right: 2px; width: 84px; }
+  .owl-speech { right: -14px; max-width: 150px; font-size: 0.7rem; }
+  .owl-art { width: 62px; height: 76px; margin-top: 12px; }
   .owl-caption { display: none; }
-  .game-controls { margin-top: 0; }
-  .play-area { width: min(100%, 340px); }
-  .play-area.length-6 { width: min(100%, 310px); }
-  .keyboard { gap: 5px; }
-  .keyboard-row { gap: 4px; }
-  .tile { font-size: 1.45rem; }
-  .length-4 .tile { font-size: 1.65rem; }
-  .length-6 .tile { font-size: 1.25rem; }
-  .key { height: 40px; }
-  .new-game { margin-top: 13px; }
+  .game-controls { gap: 12px; margin: 3px 0 6px; padding: 5px 10px; }
+  .setting select { min-width: 100px; font-size: 0.74rem; }
+  .word-reveal { gap: 6px; margin-bottom: 6px; }
+  .word-reveal strong { font-size: 1rem; }
+  .word-reveal-meaning { font-size: 0.72rem; }
+  .key { font-size: 0.78rem; }
+  .new-game { min-height: 34px; margin-top: 8px; }
+  .footnote { margin-top: 6px; }
+}
+
+@media (max-height: 560px) {
+  .tagline, .eyebrow { display: none; }
+  .title-lockup h1 { font-size: 1.9rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
