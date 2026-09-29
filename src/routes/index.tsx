@@ -18,7 +18,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "WhatTheWord — A little word game with attitude" },
       { property: "og:description", content: "Guess the word before the owl judges you. Pick your letter count and difficulty in this quirky little word game." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:url", content: "https://screenshot-mirror-704.lovable.app/" },
+      { property: "og:image", content: "https://screenshot-mirror-704.lovable.app/__l5e/assets-v1/90d4b1f4-168d-4f4a-9e64-e82c59a07675/social-preview.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://screenshot-mirror-704.lovable.app/__l5e/assets-v1/90d4b1f4-168d-4f4a-9e64-e82c59a07675/social-preview.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
